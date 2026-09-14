@@ -499,16 +499,29 @@
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.text();
-    }).then(function () {
+    }).then(function (text) {
+      // Apps Script віддає HTML-сторінку помилки з кодом 200, тому самого статусу мало:
+      // успіхом вважаємо лише відповідь виду {"ok":true}.
+      var payload = null;
+      try { payload = JSON.parse(text); } catch (e) { /* не JSON — отже, сторінка помилки */ }
+      if (!payload || payload.ok !== true) {
+        throw new Error(payload && payload.error
+          ? 'Apps Script: ' + payload.error
+          : 'Apps Script повернув не JSON — найімовірніше, сторінку помилки. ' +
+            'Перші 200 символів відповіді: ' + String(text).slice(0, 200));
+      }
       status.textContent = 'Відповіді збережено. Дякуємо за участь.';
       clearProgress();
-    }).catch(function () {
+    }).catch(function (err) {
+      window.PSYLAB_LAST_ERROR = err;
+      console.error('[psylab] надсилання не вдалося:', err);
+
       if (attempt < CFG.submitRetries) {
         status.textContent = 'Спроба надіслати відповіді ще раз (' + (attempt + 1) + ')…';
         setTimeout(function () { submit(record, attempt + 1); }, attempt * 2000);
       } else {
-        status.textContent = 'Не вдалося надіслати відповіді — імовірно, через мережу. ' +
-          'Ваші результати на екрані повні, їх можна зберегти у PDF.';
+        status.textContent = 'Не вдалося надіслати відповіді. Ваші результати на екрані ' +
+          'повні, їх можна зберегти у PDF. (Технічна причина — у консолі браузера, F12.)';
       }
     });
   }
