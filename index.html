@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дослідження харчової поведінки та емоційної регуляції</title>
+<meta name="description" content="Анонімне онлайн-дослідження харчової поведінки, сприйняття тіла, алекситимії та тривожності.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="topbar no-print">
+  <div class="topbar__inner">
+    <div class="brand">Psy<span>_</span>Lab <span>· дослідження</span></div>
+    <div class="progress-label" id="progress-label">Крок 1 з 6</div>
+  </div>
+  <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+</header>
+
+<main>
+
+  <!-- ==================================================== початок -->
+  <section class="screen" id="screen-intro" aria-labelledby="intro-title">
+    <div class="prose">
+      <h1 id="intro-title">Шановні учасники дослідження!</h1>
+      <p>
+        Дякуємо за згоду взяти участь у науковому психологічному дослідженні.
+        Анкетування є повністю анонімним і добровільним: Ви маєте право не відповідати
+        на будь-яке запитання та припинити участь на будь-якому етапі без пояснення
+        причин. Отримані дані використовуватимуться виключно в узагальненому вигляді
+        в наукових цілях і не розголошуватимуться. Якщо проходження анкети викликає
+        у Вас дискомфорт, Ви можете зробити паузу, припинити участь у дослідженні
+        та/або звернутися по підтримку до дослідника чи фахівця з психічного здоров’я.
+      </p>
+    </div>
+
+    <p class="note">
+      <strong>Інструкція:</strong> уважно прочитайте кожне запитання і позначте
+      один чи декілька варіантів відповіді.
+    </p>
+
+    <div class="actions">
+      <button class="btn" id="btn-start">Розпочати</button>
+    </div>
+  </section>
+
+  <!-- ==================================================== анкета -->
+  <section class="screen" id="screen-demographics" hidden aria-labelledby="demo-title">
+    <div class="prose">
+      <p class="eyebrow">Крок 1</p>
+      <h1 id="demo-title">Анкета</h1>
+    </div>
+    <div id="demo-fields"></div>
+    <div class="pager">
+      <span class="pager__status" id="demo-status"></span>
+      <button class="btn" id="btn-demo-next">Далі</button>
+    </div>
+  </section>
+
+  <!-- ==================================================== методика -->
+  <section class="screen" id="screen-method" hidden aria-labelledby="method-title">
+    <div class="prose">
+      <p class="eyebrow" id="method-eyebrow"></p>
+      <h1 id="method-title"></h1>
+      <p class="lede" id="method-subtitle"></p>
+    </div>
+    <div class="note" id="method-instruction"></div>
+    <div class="items" id="method-items"></div>
+    <div class="pager">
+      <button class="btn btn--ghost" id="btn-method-back">Назад</button>
+      <span class="pager__status" id="method-status"></span>
+      <button class="btn" id="btn-method-next">Далі</button>
+    </div>
+  </section>
+
+  <!-- ==================================================== результати -->
+  <section class="screen" id="screen-results" hidden aria-labelledby="results-title">
+    <div class="prose">
+      <p class="eyebrow">Ваші результати</p>
+      <h1 id="results-title">Результати проходження</h1>
+      <p class="lede" id="results-meta"></p>
+    </div>
+
+    <div class="disclaimer">
+      <h3>Перш ніж читати результати</h3>
+      <p>Ці показники отримані за допомогою онлайн-опитувальників у межах наукового дослідження.
+         Вони описують те, як Ви самі оцінили себе сьогодні, мають орієнтовний характер і
+         <strong>не є психологічним чи медичним діагнозом</strong>. Високий бал за будь-якою
+         шкалою не означає наявності розладу — він означає лише те, що Ваші відповіді
+         відрізняються від середніх.</p>
+      <p>Якщо результати Вас стривожили або питання зачепили щось важливе, це хороша причина
+         обговорити їх із кваліфікованим психологом чи психотерапевтом.
+         [Контакти служби психологічної підтримки.]</p>
+    </div>
+
+    <div id="results-body" style="display:flex;flex-direction:column;gap:2rem;"></div>
+
+    <div class="panel no-print">
+      <p class="panel__title">Зберегти результати</p>
+      <p class="lede">Ви можете зберегти цю сторінку як PDF або роздрукувати її. У збереженому
+         файлі залишаться Ваші бали та пояснення до них.</p>
+      <div class="actions">
+        <button class="btn" id="btn-print">Зберегти у PDF</button>
+        <button class="btn btn--ghost" id="btn-download-html">Завантажити як веб-сторінку</button>
+      </div>
+      <p class="save-status" id="save-status"></p>
+    </div>
+
+    <div class="prose no-print">
+      <p class="lede">Дякуємо за участь — Ваші відповіді допомагають розвитку україномовної
+         психодіагностики.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site no-print">
+  <span>Psy_Lab · анонімне наукове дослідження</span>
+  <span id="footer-version"></span>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/scoring.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

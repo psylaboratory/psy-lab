@@ -1,0 +1,428 @@
+/* ============================================================
+   Psy_Lab — оформлення
+   Палітра: приглушений петроль на холодному нейтральному тлі.
+   Шрифти: Literata (заголовки), IBM Plex Sans (текст), IBM Plex Mono (дані).
+   ============================================================ */
+
+:root {
+  --paper:        #f5f7f5;
+  --surface:      #ffffff;
+  --surface-sunk: #eef1ee;
+  --ink:          #17211f;
+  --ink-soft:     #5b6a67;
+  --ink-faint:    #8a9793;
+  --line:         #dce2df;
+  --line-strong:  #c3ccc8;
+  --accent:       #1f5f5b;
+  --accent-ink:   #ffffff;
+  --accent-soft:  #e3efec;
+  --level-low:    #4c7a57;
+  --level-mid:    #9b6f26;
+  --level-high:   #a15340;
+  --focus:        #1f5f5b;
+
+  --font-display: "Literata", Georgia, "Times New Roman", serif;
+  --font-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  --measure: 44rem;
+  --radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:        #101514;
+    --surface:      #182120;
+    --surface-sunk: #131b1a;
+    --ink:          #e7ece9;
+    --ink-soft:     #9caba7;
+    --ink-faint:    #74827e;
+    --line:         #293433;
+    --line-strong:  #3a4746;
+    --accent:       #6db5ad;
+    --accent-ink:   #0d1413;
+    --accent-soft:  #1b2b29;
+    --level-low:    #7cae84;
+    --level-mid:    #cfa257;
+    --level-high:   #d08a75;
+    --focus:        #6db5ad;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:        #101514;
+  --surface:      #182120;
+  --surface-sunk: #131b1a;
+  --ink:          #e7ece9;
+  --ink-soft:     #9caba7;
+  --ink-faint:    #74827e;
+  --line:         #293433;
+  --line-strong:  #3a4746;
+  --accent:       #6db5ad;
+  --accent-ink:   #0d1413;
+  --accent-soft:  #1b2b29;
+  --level-low:    #7cae84;
+  --level-mid:    #cfa257;
+  --level-high:   #d08a75;
+  --focus:        #6db5ad;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.05rem; }
+p { margin: 0; }
+strong { font-weight: 600; }
+
+/* ---------------------------------------------------------- шапка */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar__inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.brand span { color: var(--ink-faint); font-weight: 400; }
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.progress-track {
+  height: 2px;
+  background: var(--line);
+}
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar { transition: none; }
+}
+
+/* ---------------------------------------------------------- каркас */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+  padding-block: 2.5rem 4rem;
+}
+.screen { display: flex; flex-direction: column; gap: 1.5rem; }
+.screen[hidden] { display: none !important; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.lede { color: var(--ink-soft); }
+.prose { display: flex; flex-direction: column; gap: 0.9rem; }
+.prose h3 { margin-top: 0.6rem; }
+.prose ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem; }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.panel--quiet { background: var(--surface-sunk); border-style: dashed; }
+.panel__title { font-family: var(--font-body); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+
+.note {
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------------------------------------------------------- кнопки */
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+
+.btn {
+  font: inherit;
+  font-weight: 500;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: opacity 0.15s ease;
+}
+.btn:hover:not(:disabled) { opacity: 0.88; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn--link { background: none; border: none; color: var(--ink-soft); text-decoration: underline; padding: 0.7rem 0.2rem; }
+:where(button, input, a, summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------- згода */
+
+.consent-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+.check {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.check input { margin-top: 0.28rem; width: 1.05rem; height: 1.05rem; accent-color: var(--accent); flex: none; }
+
+/* ---------------------------------------------------------- анкета */
+
+.field { display: flex; flex-direction: column; gap: 0.55rem; }
+.field__label { font-weight: 500; }
+.field__label .opt { color: var(--ink-faint); font-weight: 400; font-size: 0.85rem; }
+.field input[type="number"], .field input[type="text"] {
+  font: inherit;
+  font-family: var(--font-mono);
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  max-width: 12rem;
+}
+.field input[type="text"] { max-width: 100%; }
+.choice-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.choice {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  background: var(--surface);
+}
+.choice:hover { border-color: var(--line-strong); }
+.choice input { margin-top: 0.25rem; accent-color: var(--accent); flex: none; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+
+/* ---------------------------------------------------------- пункти методик */
+
+.items { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.35rem 0.75rem;
+}
+.item--unanswered { border-left: 3px solid var(--level-mid); }
+.item__num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  padding-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+.item__text { font-size: 1rem; }
+.item__options { grid-column: 2; display: flex; gap: 0.35rem; margin-top: 0.5rem; }
+
+.opt-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+.opt-btn__value {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+.opt-btn:hover { border-color: var(--accent); }
+.opt-btn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.opt-btn[aria-pressed="true"] .opt-btn__value { color: var(--accent-ink); opacity: 0.75; }
+
+@media (max-width: 34rem) {
+  .item { grid-template-columns: 1.6rem 1fr; padding: 0.9rem; }
+  .item__options { flex-direction: column; }
+  .opt-btn { flex-direction: row; justify-content: space-between; text-align: left; font-size: 0.9rem; padding: 0.6rem 0.75rem; }
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+}
+.pager__status { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.pager__status--warn { color: var(--level-mid); }
+
+/* ---------------------------------------------------------- результати */
+
+.result-method { display: flex; flex-direction: column; gap: 1rem; }
+.result-method__head { display: flex; flex-direction: column; gap: 0.15rem; border-bottom: 1px solid var(--line); padding-bottom: 0.6rem; }
+.result-method__sub { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); }
+
+.scale { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.9rem 0; border-bottom: 1px dotted var(--line); }
+.scale:last-child { border-bottom: none; }
+.scale__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.scale__name { font-weight: 500; }
+.scale__value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+.scale__desc { font-size: 0.9rem; color: var(--ink-soft); }
+.scale__label { font-size: 0.9rem; font-weight: 500; }
+.scale__label[data-level="0"] { color: var(--level-low); }
+.scale__label[data-level="1"] { color: var(--level-mid); }
+.scale__label[data-level="2"] { color: var(--level-high); }
+
+.meter { position: relative; height: 22px; }
+.meter__track {
+  position: absolute; inset: 7px 0 auto 0;
+  height: 8px;
+  background: var(--surface-sunk);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+}
+.meter__band { height: 100%; opacity: 0.32; }
+.meter__band[data-level="0"] { background: var(--level-low); }
+.meter__band[data-level="1"] { background: var(--level-mid); }
+.meter__band[data-level="2"] { background: var(--level-high); }
+.meter__pin {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 22px;
+  background: var(--ink);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+.meter__ends {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.disclaimer {
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--level-mid);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.93rem;
+}
+.disclaimer h3 { font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+
+.save-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+footer.site {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  justify-content: space-between;
+}
+footer.site a { color: inherit; }
+
+/* ---------------------------------------------------------- друк / PDF */
+
+@media print {
+  :root {
+    --paper: #ffffff; --surface: #ffffff; --surface-sunk: #ffffff;
+    --ink: #000000; --ink-soft: #333333; --ink-faint: #555555;
+    --line: #bbbbbb; --line-strong: #999999; --accent: #1f5f5b;
+  }
+  .topbar, footer.site, .actions, .no-print { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  main { padding: 0; max-width: none; }
+  .panel, .disclaimer { break-inside: avoid; }
+  .result-method { break-inside: avoid; }
+  .meter__band { opacity: 0.45; }
+  @page { margin: 18mm 16mm; }
+}
