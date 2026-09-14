@@ -7,7 +7,7 @@ window.PSYLAB_CONFIG = {
   /* Адреса веб-застосунку Apps Script (Deploy → Web app → URL).
      Поки поле порожнє, сайт працює в демонстраційному режимі:
      все рахується і показується, але дані нікуди не надсилаються. */
-  appsScriptUrl: '',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwQCqVsZnM4GytIajaiHhuGmNmqQlhJ0hbzKmuNp1R0ISf8wHwoyE68LTPTVAm2X4-5/exec',
 
   /* Версія ключів підрахунку. Збільшуйте щоразу, коли змінюєте
      ключі або склад шкал у methods/*.json — значення пишеться в таблицю
