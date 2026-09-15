@@ -665,7 +665,9 @@
 
     const files = ['demographics'].concat(CFG.methods);
     Promise.all(files.map(function (n) {
-      return fetch('methods/' + n + '.json').then(function (r) {
+      // cache: 'no-cache' — браузер щоразу перепитує сервер, чи файл не змінився.
+      // Без цього після оновлення методик респонденти ще годинами бачили б стару версію.
+      return fetch('methods/' + n + '.json', { cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error(n);
         return r.json();
       });
