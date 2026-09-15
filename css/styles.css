@@ -174,11 +174,23 @@ main {
 .panel--quiet { background: var(--surface-sunk); border-style: dashed; }
 .panel__title { font-family: var(--font-body); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
 
+/* Інструкція до блоку тверджень. Свідомо помітна: у STAI від неї залежить,
+   чи перемкне респондент рамку з «саме зараз» на «звичайно». */
 .note {
-  border-left: 2px solid var(--accent);
-  padding-left: 0.9rem;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--accent-soft);
+  padding: 0.95rem 1.15rem;
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+.note strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+@media (max-width: 34rem) {
+  .note { font-size: 1.05rem; padding: 0.85rem 1rem; }
 }
 
 /* ---------------------------------------------------------- кнопки */
